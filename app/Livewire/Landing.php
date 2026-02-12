@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Chairman;
 use App\Models\Event;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
@@ -24,6 +25,7 @@ class Landing extends Component
             'latestNews' => News::latest()->take(3)->get(),
             'galleries' => Gallery::active()->with('category')->ordered()->take(12)->get(),
             'galleryCategories' => GalleryCategory::withCount('activeGalleries')->ordered()->get(),
+            'activeChairman' => Chairman::active()->ordered()->first(),
         ])->layout('layouts::landing');
     }
 }

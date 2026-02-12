@@ -5,7 +5,7 @@
             <div class="flex items-center justify-between h-16">
                 {{-- Logo --}}
                 <a href="{{ route('home') }}" class="flex items-center gap-2.5 group">
-                    <div class="w-9 h-9 bg-gradient-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                    <div class="w-9 h-9 bg-linear-to-br from-green-600 to-green-700 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                         </svg>
@@ -40,10 +40,12 @@
                 </div>
 
                 {{-- Mobile Menu Button --}}
-                <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition">
-                    <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    <svg x-show="mobileOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
+                <div class="flex items-center gap-2 md:hidden">
+                    <button @click="mobileOpen = !mobileOpen" class="p-2 rounded-lg text-gray-500 hover:bg-gray-100 transition">
+                        <svg x-show="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        <svg x-show="mobileOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
             </div>
 
             {{-- Mobile Menu --}}
@@ -88,10 +90,9 @@
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
                 Karang Taruna
-                <span class="block text-green-300 text-2xl sm:text-3xl lg:text-4xl font-semibold mt-3">Transparan • Demokratis • Modern</span>
             </h1>
             <p class="text-green-100/80 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                Transparansi keuangan, voting demokratis, dan informasi terkini — semua dalam satu platform untuk seluruh warga.
+                Mewujudkan generasi muda yang aktif, kreatif, dan bertanggung jawab dalam pembangunan desa.
             </p>
             @guest
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
@@ -112,44 +113,73 @@
         </div>
     </section>
 
-    {{-- Transparansi Keuangan --}}
-    <section id="keuangan" class="max-w-6xl mx-auto px-4 sm:px-6 py-20 scroll-mt-20">
+    {{-- Ketua Karang Taruna --}}
+    @if($activeChairman)
+    <section id="ketua" class="max-w-6xl mx-auto px-4 sm:px-6 py-20 scroll-mt-20">
         <div class="text-center mb-12">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 mb-4">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                Keuangan
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                Pimpinan
             </span>
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Transparansi Kas Desa</h2>
-            <p class="text-gray-500 max-w-lg mx-auto">Saldo dan ringkasan keuangan Karang Taruna yang dapat diakses semua warga secara real-time</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-3">Ketua Karang Taruna</h2>
+            <p class="text-gray-500 max-w-lg mx-auto">Profil ketua yang memimpin Karang Taruna saat ini</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div class="bg-gradient-to-br from-green-500 to-emerald-700 rounded-2xl p-7 text-white shadow-xl shadow-green-500/20 text-center relative overflow-hidden group hover:shadow-2xl hover:shadow-green-500/30 transition-shadow duration-300">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-10 translate-x-10 group-hover:scale-110 transition-transform duration-500"></div>
-                <div class="absolute bottom-0 left-0 w-20 h-20 bg-white/5 rounded-full translate-y-6 -translate-x-6"></div>
-                <div class="relative">
-                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mx-auto mb-3 backdrop-blur-sm">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white rounded-3xl border border-gray-100 shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <div class="flex flex-col md:flex-row">
+                    {{-- Photo --}}
+                    <div class="md:w-2/5 relative">
+                        @if($activeChairman->photo)
+                        <img src="{{ asset('storage/' . $activeChairman->photo) }}" alt="{{ $activeChairman->name }}" class="w-full h-64 md:h-full object-cover">
+                        @else
+                        <div class="w-full h-64 md:h-full bg-gradient-to-br from-green-100 to-green-200 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                        </div>
+                        @endif
+                        <div class="absolute bottom-3 left-3 md:bottom-4 md:left-4">
+                            <span class="px-3 py-1 bg-green-600/90 text-white text-xs font-semibold rounded-full backdrop-blur-sm shadow-sm">
+                                Periode {{ $activeChairman->period }}
+                            </span>
+                        </div>
                     </div>
-                    <p class="text-green-100 text-sm font-medium mb-1">Saldo Kas Saat Ini</p>
-                    <p class="text-3xl sm:text-4xl font-bold">Rp {{ number_format($balance, 0, ',', '.') }}</p>
+                    {{-- Info --}}
+                    <div class="md:w-3/5 p-6 sm:p-8 flex flex-col justify-center">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-1">{{ $activeChairman->name }}</h3>
+                        <p class="text-green-600 font-semibold text-sm mb-4">Ketua Karang Taruna</p>
+
+                        @if($activeChairman->formatted_birth)
+                        <div class="flex items-center gap-3 text-gray-500 text-sm mb-4">
+                            <div class="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center shrink-0">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                            <span>{{ $activeChairman->formatted_birth }}</span>
+                        </div>
+                        @endif
+
+                        @if($activeChairman->achievements && count($activeChairman->achievements) > 0)
+                        <div class="border-t border-gray-100 pt-4 mt-auto">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                                Prestasi
+                            </p>
+                            <ul class="space-y-2">
+                                @foreach($activeChairman->achievements as $achievement)
+                                <li class="flex items-start gap-2.5 text-sm text-gray-600">
+                                    <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                    </div>
+                                    {{ $achievement }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 transition">
-                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"/></svg>
-                </div>
-                <p class="text-gray-500 text-sm mb-1">Total Pemasukan</p>
-                <p class="text-2xl sm:text-3xl font-bold text-gray-800">Rp {{ number_format($totalIncome, 0, ',', '.') }}</p>
-            </div>
-            <div class="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-red-200 transition">
-                    <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"/></svg>
-                </div>
-                <p class="text-gray-500 text-sm mb-1">Total Pengeluaran</p>
-                <p class="text-2xl sm:text-3xl font-bold text-gray-800">Rp {{ number_format($totalExpense, 0, ',', '.') }}</p>
             </div>
         </div>
     </section>
+    @endif
 
     {{-- Sejarah Karang Taruna --}}
     <section id="sejarah" class="bg-gradient-to-b from-gray-50 to-white py-20 scroll-mt-20">
@@ -165,7 +195,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div class="space-y-6">
                     <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                        <div class="shrink-0 w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
                             <span class="text-green-700 font-bold text-sm">1960</span>
                         </div>
                         <div>
@@ -174,7 +204,7 @@
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                        <div class="shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                             <span class="text-blue-700 font-bold text-sm">1981</span>
                         </div>
                         <div>
@@ -183,7 +213,7 @@
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <div class="shrink-0 w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                             <span class="text-purple-700 font-bold text-sm">2010</span>
                         </div>
                         <div>
@@ -192,7 +222,7 @@
                         </div>
                     </div>
                     <div class="flex gap-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center">
+                        <div class="shrink-0 w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center">
                             <span class="text-white font-bold text-sm">Now</span>
                         </div>
                         <div>
@@ -304,7 +334,7 @@
     </section>
 
     {{-- Fitur Utama --}}
-    <section class="bg-gradient-to-b from-gray-50 to-white py-20">
+    <section class="bg-linear-to-b from-gray-50 to-white py-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 mb-4">
@@ -378,7 +408,7 @@
 
     {{-- Berita Terbaru --}}
     @if($latestNews->count() > 0)
-    <section id="berita" class="bg-gradient-to-b from-gray-50 to-white py-20 scroll-mt-20">
+    <section id="berita" class="bg-linear-to-b from-gray-50 to-white py-20 scroll-mt-20">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 mb-4">
@@ -399,7 +429,7 @@
                             <svg class="w-12 h-12 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
                         </div>
                         @endif
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </a>
                     <div class="p-6 flex-1 flex flex-col">
                         <p class="text-xs text-gray-400 mb-2 font-medium">{{ $news->created_at->diffForHumans() }}</p>
@@ -420,7 +450,7 @@
     @endif
 
     {{-- Footer --}}
-    <footer class="bg-gradient-to-b from-green-900 to-green-950 text-green-300 pt-16 pb-8">
+    <footer class="bg-linear-to-b from-green-900 to-green-950 text-green-300 pt-16 pb-8">
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
                 <div>

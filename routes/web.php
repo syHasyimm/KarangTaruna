@@ -56,5 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin/pengguna', Admin\UserManagement::class)->name('admin.users');
         Route::get('/admin/gallery', Admin\GalleryManagement::class)->name('admin.gallery');
+        Route::get('/admin/ketua', Admin\ChairmanManagement::class)->name('admin.chairman');
     });
 });
