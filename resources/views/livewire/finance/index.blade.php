@@ -1,4 +1,5 @@
 <div>
+    <x-slot name="header">Keuangan & Kas</x-slot>
     {{-- Summary Cards --}}
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <div class="bg-linear-to-br from-green-500 to-green-700 rounded-2xl p-5 text-white shadow-lg shadow-green-500/20">

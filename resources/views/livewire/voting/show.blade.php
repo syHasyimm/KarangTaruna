@@ -29,9 +29,12 @@
 
                 @if($event->status === 'open' && !$hasVoted)
                 <form wire:submit="submitVote" class="space-y-4">
-                    <p class="font-medium text-gray-700 mb-3">Pilih salah satu:</p>
+                    <p class="font-medium text-gray-700 mb-3">{{ $event->type === 'multiple_choice' ? 'Pilih salah satu opsi:' : 'Apakah Anda setuju?' }}</p>
                     <div class="space-y-2">
-                        @foreach(['Setuju', 'Tidak Setuju', 'Abstain'] as $option)
+                        @php
+                            $options = $event->type === 'multiple_choice' ? $event->options : ['Setuju', 'Tidak Setuju', 'Abstain'];
+                        @endphp
+                        @foreach($options as $option)
                         <label class="flex items-center gap-3 p-4 border rounded-xl cursor-pointer transition-all duration-200 {{ $choice === $option ? 'border-green-500 bg-green-50 ring-2 ring-green-500/20' : 'border-gray-200 hover:border-green-300 hover:bg-green-50/50' }}">
                             <input wire:model="choice" type="radio" value="{{ $option }}" class="text-green-600 focus:ring-green-500">
                             <span class="text-sm font-medium {{ $choice === $option ? 'text-green-700' : 'text-gray-700' }}">{{ $option }}</span>

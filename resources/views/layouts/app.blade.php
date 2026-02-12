@@ -54,10 +54,12 @@
             <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
                 <p class="text-green-400 text-[10px] uppercase tracking-widest font-semibold px-3 mb-2">Menu Utama</p>
 
+                @hasanyrole('admin|bendahara')
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 {{ request()->routeIs('dashboard') ? 'bg-white/15 text-white font-semibold shadow-lg shadow-green-900/20' : 'text-green-200 hover:bg-white/10 hover:text-white' }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                     Dashboard
                 </a>
+                @endhasanyrole
 
                 @hasanyrole('admin|bendahara')
                 <p class="text-green-400 text-[10px] uppercase tracking-widest font-semibold px-3 mt-5 mb-2">Keuangan</p>
@@ -87,6 +89,11 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     Kelola Pengguna
                 </a>
+
+                <a href="{{ route('admin.gallery') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all duration-200 {{ request()->routeIs('admin.gallery') ? 'bg-white/15 text-white font-semibold shadow-lg shadow-green-900/20' : 'text-green-200 hover:bg-white/10 hover:text-white' }}">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    Kelola Gallery
+                </a>
                 @endrole
             </nav>
 
@@ -111,7 +118,7 @@
                         <button @click="sidebarOpen = true" class="lg:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                         </button>
-                        <h2 class="text-lg font-semibold text-gray-800">{{ $header ?? 'Dashboard' }}</h2>
+                        <h2 class="text-lg font-semibold text-gray-800">{{ $header ?? '' }}</h2>
                     </div>
                     <div class="text-xs text-gray-500">
                         {{ now()->translatedFormat('l, d F Y') }}

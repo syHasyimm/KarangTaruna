@@ -1,4 +1,5 @@
 <div>
+    <x-slot name="header">Voting & Polling</x-slot>
     {{-- Header --}}
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
         <div>
@@ -45,6 +46,24 @@
                         </select>
                     </div>
                 </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Jenis Voting</label>
+                    <select wire:model.live="type" class="w-full px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:ring-green-500 focus:border-green-500">
+                        <option value="yes_no">Setuju / Tidak Setuju</option>
+                        <option value="multiple_choice">Pilihan Ganda (Event Selection)</option>
+                    </select>
+                </div>
+
+                @if($type === 'multiple_choice')
+                <div class="space-y-2 bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <label class="block text-sm font-medium text-gray-700">Pilihan Opsi (Maksimal 5)</label>
+                    @foreach($options as $index => $option)
+                    <input wire:model="options.{{ $index }}" type="text" placeholder="Opsi {{ $index + 1 }}" class="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-green-500 focus:border-green-500">
+                    @endforeach
+                    @error('options') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                </div>
+                @endif
                 <div class="flex gap-3 pt-2">
                     <button type="button" wire:click="resetForm" class="flex-1 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 hover:bg-gray-50">Batal</button>
                     <button type="submit" class="flex-1 py-2.5 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700">Simpan</button>

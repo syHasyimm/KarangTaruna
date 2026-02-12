@@ -48,7 +48,7 @@ class Register extends Component
         Auth::login($user);
         session()->regenerate();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('voting.index');
     }
 
     public function render()

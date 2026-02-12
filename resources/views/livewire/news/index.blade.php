@@ -1,4 +1,5 @@
 <div>
+    <x-slot name="header">Berita & Pengumuman</x-slot>
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
         <p class="text-gray-500 text-sm">Informasi dan kabar terbaru dari desa</p>
         @role('admin')

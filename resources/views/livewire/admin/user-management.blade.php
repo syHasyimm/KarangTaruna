@@ -1,4 +1,5 @@
 <div>
+    <x-slot name="header">Kelola Pengguna</x-slot>
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6">
         <p class="text-gray-500 text-sm">Kelola pengguna dan atur hak akses mereka</p>
         <button wire:click="$set('showForm', true)" class="px-4 py-2 bg-green-600 text-white rounded-xl text-sm font-medium hover:bg-green-700 transition flex items-center gap-2">

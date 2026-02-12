@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $fillable = ['title', 'description', 'year', 'status'];
+    protected $fillable = ['title', 'description', 'year', 'status', 'type', 'options'];
+
+    protected $casts = [
+        'options' => 'array',
+    ];
 
     public function votes()
     {

@@ -22,6 +22,12 @@ class Login extends Component
 
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             session()->regenerate();
+
+            // Warga goes to landing page, admin/bendahara to dashboard
+            $user = Auth::user();
+            if ($user->hasRole('warga')) {
+                return redirect()->intended(route('voting.index'));
+            }
             return redirect()->intended(route('dashboard'));
         }
 
